@@ -73,7 +73,11 @@
 
 <main>
   <h2>Select a Service</h2>
-  <div class="service-buttons">
+  <div class="service-buttons"><div class="card" tabindex="0" role="button" onclick="openModal('usdSubscription')">
+  <h3>🛍️ USD Payments / Subscriptions</h3>
+  <p>Buy Netflix, ChatGPT, Spotify, or other subscriptions using NPR easily.</p>
+  <button class="btn" type="button" onclick="openModal('usdSubscription'); event.stopPropagation();">➡️ Select</button>
+</div>
     <a href="https://wa.me/9779862535413?text=Hi%2C%20I%20want%20to%20exchange%20NPR%20to%20USD" target="_blank" rel="noopener">
       <button class="btn-npr-usd">NPR ➜ USD</button>
     </a>
