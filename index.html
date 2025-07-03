@@ -1,1 +1,218 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DollerSewa – NPR to USD Service</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      color: #333;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: linear-gradient(to right, green, red);
+      color: white;
+      padding: 1rem;
+    }
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+    }
+    .menu {
+      position: relative;
+    }
+    .menu-icon {
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+    .dropdown {
+      display: none;
+      position: absolute;
+      right: 0;
+      top: 2rem;
+      background: white;
+      color: black;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      min-width: 150px;
+      z-index: 1000;
+    }
+    .dropdown a {
+      display: block;
+      padding: 0.5rem;
+      text-decoration: none;
+      color: black;
+    }
+    .dropdown a:hover {
+      background: #eee;
+    }
+    .container {
+      max-width: 960px;
+      margin: auto;
+      padding: 1rem;
+    }
+    .card {
+      background: white;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    }
+    .card h2 {
+      margin: 0 0 0.5rem 0;
+    }
+    .service-list {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .service-list li {
+      background: #e2ffe2;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .service-list li:hover {
+      background: #c8f7c5;
+    }
+    .logos {
+      text-align: center;
+      margin-top: 2rem;
+    }
+    .logos img {
+      height: 40px;
+      margin: 0 10px;
+      vertical-align: middle;
+    }
+    footer {
+      background: #222;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.7);
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-content {
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      max-width: 400px;
+      text-align: center;
+    }
+    .close-btn {
+      margin-top: 1rem;
+      background: red;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">DollerSewa</div>
+    <div class="menu">
+      <div class="menu-icon" onclick="toggleMenu()">☰</div>
+      <div class="dropdown" id="dropdownMenu">
+        <a href="#about">About Us</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </header>  <div class="container">
+    <div class="card">
+      <h2>Our Services</h2>
+      <p>Select a service to get real-time conversion and total amount.</p>
+      <ul class="service-list">
+        <li onclick="showModal('Netflix', 15)">Netflix – $15</li>
+        <li onclick="showModal('ChatGPT Plus', 20)">ChatGPT Plus – $20</li>
+        <li onclick="showModal('Spotify', 10)">Spotify – $10</li>
+        <li onclick="showModal('Canva', 12)">Canva – $12</li>
+        <li onclick="showModal('Amazon Prime', 14)">Amazon Prime – $14</li>
+        <li onclick="showModal('Disney+', 13)">Disney+ – $13</li>
+        <li onclick="showModal('Xbox Live', 25)">Xbox Live – $25</li>
+      </ul>
+    </div><div class="logos">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Esewa_logo.png/320px-Esewa_logo.png" alt="eSewa" />
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Khalti_Digital_Wallet_Logo.png/320px-Khalti_Digital_Wallet_Logo.png" alt="Khalti" />
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/IME_Pay_logo.png/320px-IME_Pay_logo.png" alt="IME Pay" />
+</div>
 
+<div id="about" class="card">
+  <h2>About Us</h2>
+  <p>DollerSewa is a trusted NPR to USD exchange service built to help Nepali users purchase foreign digital subscriptions with local wallets like eSewa, Khalti & IME Pay.</p>
+</div>
+
+<div id="faq" class="card">
+  <h2>FAQ</h2>
+  <p><strong>Q: How does it work?</strong><br>A: You choose a service, we calculate the total in NPR, and you confirm via WhatsApp. We handle the purchase for you.</p>
+  <p><strong>Q: What payment methods do you accept?</strong><br>A: eSewa, Khalti, IME Pay, and bank deposits.</p>
+</div>
+
+<div id="contact" class="card">
+  <h2>Contact</h2>
+  <p>📞 WhatsApp: <a href="https://wa.me/9779862535413">9862535413</a><br>
+  📧 Email: dollersewa@gmail.com</p>
+</div>
+
+  </div>  <footer>
+    &copy; 2025 DollerSewa. All rights reserved.
+  </footer>  <div class="modal" id="priceModal">
+    <div class="modal-content">
+      <h2 id="serviceName"></h2>
+      <p>Price (USD): $<span id="usdAmount"></span></p>
+      <p>Exchange Rate: 1 USD = NPR <span id="rate">133</span></p>
+      <p>Converted NPR: NPR <span id="converted"></span></p>
+      <p>Service Fee (10%): NPR <span id="fee"></span></p>
+      <h3>Total: NPR <span id="total"></span></h3>
+      <a id="whatsappLink" target="_blank"><button>Confirm on WhatsApp</button></a>
+      <button class="close-btn" onclick="closeModal()">Close</button>
+    </div>
+  </div>  <script>
+    function showModal(service, usd) {
+      const rate = 133;
+      const feeRate = 0.10;
+      const converted = Math.round(usd * rate);
+      const fee = Math.round(converted * feeRate);
+      const total = converted + fee;
+
+      document.getElementById('serviceName').innerText = service;
+      document.getElementById('usdAmount').innerText = usd;
+      document.getElementById('converted').innerText = converted;
+      document.getElementById('fee').innerText = fee;
+      document.getElementById('total').innerText = total;
+      document.getElementById('rate').innerText = rate;
+
+      const message = `Hi, I want to purchase ${service} ($${usd}). Total NPR: ${total}`;
+      const url = `https://wa.me/9779862535413?text=${encodeURIComponent(message)}`;
+      document.getElementById('whatsappLink').href = url;
+
+      document.getElementById('priceModal').style.display = 'flex';
+    }
+
+    function closeModal() {
+      document.getElementById('priceModal').style.display = 'none';
+    }
+
+    function toggleMenu() {
+      const menu = document.getElementById('dropdownMenu');
+      menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+    }
+  </script></body>
+</html>
