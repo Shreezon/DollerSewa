@@ -1,1 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DollerSewa – NPR to USD Service</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      color: #333;
+    }
+    header {
+      background: linear-gradient(to right, green, red);
+      color: white;
+      padding: 1rem;
+      text-align: center;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+    .logo {
+      font-size: 2rem;
+      color: white;
+    }
+    .container {
+      max-width: 960px;
+      margin: auto;
+      padding: 1rem;
+    }
+    .card {
+      background: white;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    }
+    .card h2 {
+      margin: 0 0 0.5rem 0;
+    }
+    .card button {
+      background: green;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-right: 0.5rem;
+      margin-top: 0.5rem;
+    }
+    .card button:hover {
+      background: darkgreen;
+    }
+    .logos {
+      text-align: center;
+      margin-top: 2rem;
+    }
+    .logos img {
+      height: 40px;
+      margin: 0 10px;
+      vertical-align: middle;
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.7);
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-content {
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      max-width: 400px;
+      text-align: center;
+    }
+    .close-btn {
+      margin-top: 1rem;
+      background: red;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">DollerSewa</div>
+    NPR to USD | USD Payments | Subscriptions
+  </header>
 
+  <div class="container">
+    <div class="card">
+      <h2>Buy Any USD Subscription (Netflix, Spotify, ChatGPT...)</h2>
+      <p>We help Nepali users buy any USD-based service or subscription easily through eSewa, Khalti, IME Pay, or bank deposit.</p>
+      <button onclick="showModal('Netflix', 15)">Buy Netflix – $15</button>
+      <button onclick="showModal('ChatGPT Plus', 20)">Buy ChatGPT Plus – $20</button>
+      <button onclick="showModal('Spotify', 10)">Buy Spotify – $10</button>
+      <button onclick="showModal('Canva', 12)">Buy Canva – $12</button>
+      <button onclick="showModal('Amazon Prime', 14)">Buy Amazon Prime – $14</button>
+      <button onclick="showModal('Disney+', 13)">Buy Disney+ – $13</button>
+      <button onclick="showModal('Xbox Live', 25)">Buy Xbox Live – $25</button>
+    </div>
+
+    <div class="logos" aria-label="Payment options">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Esewa_logo.png/320px-Esewa_logo.png" alt="eSewa Logo" />
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Khalti_Digital_Wallet_Logo.png/320px-Khalti_Digital_Wallet_Logo.png" alt="Khalti Logo" />
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/IME_Pay_logo.png/320px-IME_Pay_logo.png" alt="IME Pay Logo" />
+    </div>
+  </div>
+
+  <div class="modal" id="priceModal" role="dialog" aria-modal="true" aria-labelledby="serviceName">
+    <div class="modal-content">
+      <h2 id="serviceName"></h2>
+      <p>Price (USD): <span id="usdAmount"></span></p>
+      <p>Exchange Rate: 1 USD = NPR <span id="rate">133</span></p>
+      <p>Converted NPR: NPR <span id="converted"></span></p>
+      <p>Service Fee (10%): NPR <span id="fee"></span></p>
+      <h3>Total: NPR <span id="total"></span></h3>
+      <a id="whatsappLink" target="_blank" rel="noopener noreferrer" aria-label="Checkout via WhatsApp">
+        <button>Checkout via WhatsApp</button>
+      </a>
+      <button class="close-btn" onclick="closeModal()" aria-label="Close modal">Close</button>
+    </div>
+  </div>
+
+  <script>
+    function showModal(service, usd) {
+      const rate = 133;
+      const feeRate = 0.10;
+      const converted = Math.round(usd * rate);
+      const fee = Math.round(converted * feeRate);
+      const total = converted + fee;
+
+      document.getElementById('serviceName').innerText = service;
+      document.getElementById('usdAmount').innerText = usd;
+      document.getElementById('converted').innerText = converted;
+      document.getElementById('fee').innerText = fee;
+      document.getElementById('total').innerText = total;
+      document.getElementById('rate').innerText = rate;
+
+      const message = `Hi, I want to purchase ${service} ($${usd}). Total NPR: ${total}`;
+      const url = `https://wa.me/9779862535413?text=${encodeURIComponent(message)}`;
+      document.getElementById('whatsappLink').href = url;
+
+      document.getElementById('priceModal').style.display = 'flex';
+    }
+
+    function closeModal() {
+      document.getElementById('priceModal').style.display = 'none';
+    }
+  </script>
+</body>
+</html>
