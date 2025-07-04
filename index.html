@@ -1,1 +1,320 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DollerSewa – NPR to USD, Crypto & Subscriptions</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <style>
+    :root {
+      --primary-color: #0f172a;
+      --secondary-color: #1e293b;
+      --accent-color: #3b82f6;
+      --highlight: #22c55e;
+      --text-color: #ffffff;
+      --light-text: #cbd5e1;
+      --card-bg: #1e293b;
+      --border-radius: 12px;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+    body {
+      background: var(--primary-color);
+      color: var(--text-color);
+    }
+    header {
+      background-color: var(--secondary-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .logo img {
+      height: 40px;
+    }
+    .menu-icon {
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+    .dropdown {
+      display: none;
+      position: absolute;
+      top: 60px;
+      right: 20px;
+      background: var(--secondary-color);
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    }
+    .dropdown a {
+      display: block;
+      padding: 0.8rem 1.5rem;
+      text-decoration: none;
+      color: var(--light-text);
+    }
+    .dropdown a:hover {
+      background-color: var(--accent-color);
+      color: #fff;
+    }
+    .language-toggle {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      cursor: pointer;
+      color: #fff;
+      font-size: 14px;
+    }
+    .hero {
+      background: linear-gradient(to right, var(--accent-color), var(--highlight));
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    .hero p {
+      font-size: 1rem;
+      max-width: 600px;
+      margin: auto;
+    }
+    .cta-btns {
+      margin-top: 2rem;
+    }
+    .cta-btns a {
+      background: #fff;
+      color: #000;
+      padding: 0.75rem 1.5rem;
+      margin: 0 10px;
+      border-radius: 8px;
+      font-weight: bold;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    .cta-btns a:hover {
+      background: #000;
+      color: #fff;
+    }
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 2rem;
+    }
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--border-radius);
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    .card h2 {
+      margin-bottom: 1rem;
+      color: var(--highlight);
+    }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1rem;
+    }
+    .service-card {
+      background: #334155;
+      padding: 1rem;
+      text-align: center;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+    .service-card:hover {
+      background: var(--accent-color);
+      color: #fff;
+    }
+    .logos {
+      text-align: center;
+      margin: 2rem 0;
+    }
+    .logos img {
+      height: 45px;
+      margin: 10px;
+    }
+    .faq, .contact, .testimonials {
+      background: var(--card-bg);
+      padding: 2rem;
+      border-radius: var(--border-radius);
+      margin-top: 2rem;
+    }
+    .faq h3, .contact h3, .testimonials h3 {
+      margin-bottom: 1rem;
+      color: var(--accent-color);
+    }
+    .testimonial {
+      background: #2d3748;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      border-radius: 10px;
+      font-style: italic;
+    }
+    .modal, .auth {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.85);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+    .modal-content, .auth-content {
+      background: #fff;
+      color: #000;
+      padding: 2rem;
+      border-radius: 12px;
+      text-align: center;
+    }
+    .modal-content button, .auth-content button {
+      margin-top: 1rem;
+      padding: 0.5rem 1.2rem;
+      background: var(--accent-color);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      color: var(--light-text);
+      background: var(--secondary-color);
+    }
+  </style>
+</head>
+<body>
+  <div class="language-toggle" onclick="toggleLanguage()">🇺🇸 EN | 🇳🇵 NP</div>
+  <header>
+    <div class="logo">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Esewa_logo.png/320px-Esewa_logo.png" alt="DollerSewa Logo">
+    </div>
+    <div class="menu">
+      <div class="menu-icon" onclick="toggleMenu()">☰</div>
+      <div class="dropdown" id="dropdownMenu">
+        <a href="#services">Services</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Contact</a>
+        <a href="#" onclick="showLogin()">Login</a>
+        <a href="#" onclick="showSignup()">Sign Up</a>
+      </div>
+    </div>
+  </header>  <section class="hero">
+    <h1>Convert NPR to USD, Crypto, and Subscriptions</h1>
+    <p>Pay with eSewa, Khalti, IME for services like Netflix, ChatGPT, Canva Pro & more. Fast, trusted & secure.</p>
+    <div class="cta-btns">
+      <a href="#services">Explore Services</a>
+      <a href="https://wa.me/9779862535413">WhatsApp Us</a>
+    </div>
+  </section>  <div class="container">
+    <div id="services" class="card">
+      <h2>Our Services</h2>
+      <div class="services-grid">
+        <div class="service-card" onclick="showModal('Netflix', 15)">Netflix</div>
+        <div class="service-card" onclick="showModal('Spotify', 10)">Spotify</div>
+        <div class="service-card" onclick="showModal('ChatGPT Plus', 20)">ChatGPT Plus</div>
+        <div class="service-card" onclick="showModal('Canva Pro', 12)">Canva Pro</div>
+        <div class="service-card" onclick="showModal('Amazon Prime', 14)">Amazon Prime</div>
+        <div class="service-card" onclick="showModal('NPR to Crypto', 30)">NPR to Crypto</div>
+        <div class="service-card" onclick="showModal('Crypto to NPR', 25)">Crypto to NPR</div>
+        <div class="service-card" onclick="showModal('Crypto Payments', 20)">Crypto Payments</div>
+      </div>
+    </div><div class="logos">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Esewa_logo.png/320px-Esewa_logo.png" alt="eSewa">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Khalti_Digital_Wallet_Logo.png/320px-Khalti_Digital_Wallet_Logo.png" alt="Khalti">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/IME_Pay_logo.png/320px-IME_Pay_logo.png" alt="IME Pay">
+</div>
 
+<div class="testimonials">
+  <h3>What Our Customers Say</h3>
+  <div class="testimonial">“Super fast delivery and great support. Bought Netflix within 5 minutes.”</div>
+  <div class="testimonial">“Best place to pay for ChatGPT Plus from Nepal. Trustworthy and smooth.”</div>
+  <div class="testimonial">“Used for crypto payment and Canva. Very friendly and reliable.”</div>
+</div>
+
+<div id="faq" class="faq">
+  <h3>FAQ</h3>
+  <p><strong>How do I place an order?</strong> Click a service to see price & WhatsApp us.</p>
+  <p><strong>Is there a service charge?</strong> Yes, 10% of the total converted NPR amount.</p>
+  <p><strong>Is it secure?</strong> Yes. 100% trusted, no hidden fees.</p>
+</div>
+
+<div id="contact" class="contact">
+  <h3>Contact Us</h3>
+  <p>📞 <a href="https://wa.me/9779862535413">WhatsApp: 9862535413</a></p>
+  <p>📧 Email: dshreezon@gmail.com</p>
+</div>
+
+  </div>  <div class="modal" id="priceModal">
+    <div class="modal-content">
+      <h2 id="serviceName"></h2>
+      <p>Price: $<span id="usdAmount"></span></p>
+      <p>Rate: 1 USD = NPR <span id="rate"></span></p>
+      <p>NPR Value: NPR <span id="converted"></span></p>
+      <p>Service Fee (10%): NPR <span id="fee"></span></p>
+      <h3>Total: NPR <span id="total"></span></h3>
+      <a id="whatsappLink" target="_blank"><button>Order via WhatsApp</button></a>
+      <button onclick="closeModal()">Close</button>
+    </div>
+  </div>  <div class="auth" id="authBox">
+    <div class="auth-content">
+      <h2 id="authTitle">Login</h2>
+      <input type="text" placeholder="Email" style="margin-top:1rem; padding:0.5rem; width:90%;">
+      <input type="password" placeholder="Password" style="margin-top:1rem; padding:0.5rem; width:90%;">
+      <button>Continue</button>
+      <button onclick="closeAuth()">Cancel</button>
+    </div>
+  </div>  <footer>
+    &copy; 2025 DollerSewa. Trusted NPR to USD & Crypto Payment Partner.
+  </footer>  <script>
+    function toggleMenu() {
+      const menu = document.getElementById("dropdownMenu");
+      menu.style.display = menu.style.display === "block" ? "none" : "block";
+    }
+    function showModal(service, usd) {
+      fetch('https://open.er-api.com/v6/latest/USD')
+        .then(res => res.json())
+        .then(data => {
+          const rate = data.rates.NPR;
+          const fee = Math.round(usd * rate * 0.1);
+          const total = Math.round(usd * rate + fee);
+          document.getElementById("rate").innerText = rate;
+          document.getElementById("usdAmount").innerText = usd;
+          document.getElementById("converted").innerText = Math.round(usd * rate);
+          document.getElementById("fee").innerText = fee;
+          document.getElementById("total").innerText = total;
+          document.getElementById("serviceName").innerText = service;
+          document.getElementById("whatsappLink").href = `https://wa.me/9779862535413?text=I want to buy ${service} for $${usd}. Total NPR: ${total}`;
+          document.getElementById("priceModal").style.display = "flex";
+        });
+    }
+    function closeModal() {
+      document.getElementById("priceModal").style.display = "none";
+    }
+    function showLogin() {
+      document.getElementById("authBox").style.display = "flex";
+      document.getElementById("authTitle").innerText = "Login";
+    }
+    function showSignup() {
+      document.getElementById("authBox").style.display = "flex";
+      document.getElementById("authTitle").innerText = "Sign Up";
+    }
+    function closeAuth() {
+      document.getElementById("authBox").style.display = "none";
+    }
+    function toggleLanguage() {
+      alert("Coming soon: Nepali version");
+    }
+  </script></body>
+</html>
